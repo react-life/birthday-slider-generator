@@ -1,0 +1,40 @@
+@import 'variables.sss';
+
+.tabs
+  display: block
+
+.labels
+  margin-bottom: 30px
+  display: flex
+  list-style: none
+
+.label
+  position: relative
+  margin-right: 30px
+  padding-bottom: 16px
+  text-transform: uppercase
+  color: var(--gray)
+  font-weight: 700
+  letter-spacing: .8
+  cursor: pointer
+  transition: color .2s ease
+
+  &::after
+    position: absolute
+    left: 50%
+    bottom: 0
+    width: 0
+    height: 3px
+    background: var(--blue)
+    transition: width .2s ease
+    transform: translate(-50%, 0)
+    content: ''
+
+  &_active
+    color: var(--blue)
+
+    &::after
+      width: 100%
+
+.content
+  display: block

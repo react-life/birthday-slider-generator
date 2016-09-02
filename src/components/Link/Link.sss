@@ -1,0 +1,30 @@
+@import 'variables.sss';
+
+.link
+  cursor: pointer
+  color: var(--darkBlue)
+  font-size: 14px
+  text-decoration: none
+  transition-duration: .3s
+  transition-property: color
+
+  &:hover
+    color: var(--blue)
+
+  &_size_large
+    font-size: 18px
+
+  &_theme_bold
+    font-weight: 700
+
+  &_color
+    &_white
+      color: var(--color-white)
+
+    &_blue
+      color: var(--blue)
+
+  &_active
+    color: var(--blue)
+    font-weight: 700
+    cursor: default

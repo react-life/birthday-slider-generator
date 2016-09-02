@@ -1,0 +1,38 @@
+@import 'variables.sss';
+
+.tooltip
+  padding-bottom: 35px
+  padding-left: 29px
+  padding-right: 29px
+  padding-top: 25px
+  background-color: var(--color-white)
+  box-shadow: 0 5px 10px 0 rgba(63, 73, 96, .2)
+  border: 1px solid var(--lightGray)
+  opacity: 0
+  transition: opacity .3s .2s, transform .3s .2s
+
+  &_theme_progress
+    position: absolute
+    z-index: -1
+    right: -20px
+    top: -140px
+    min-width: 330px
+    transform: translate3d(110%, 0, 0)
+
+    &::before
+      position: absolute
+      left: -9px
+      top: 168px
+      width: 15px
+      height: 15px
+      background-color: var(--color-white)
+      border-bottom: 1px solid var(--lightGray)
+      border-left: 1px solid var(--lightGray)
+      box-shadow: -3px 3px 9px -2px rgba(63, 73, 96, .2)
+      transform: rotate(45deg)
+      content: '';
+
+  &_state_visible
+    z-index: 1
+    opacity: 1
+    transform: translate3d(100%, 0, 0)

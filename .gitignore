@@ -1,0 +1,11 @@
+.idea/
+node_modules/
+static/dist/
+static/__components/
+*.iml
+webpack-assets.json
+webpack-stats.json
+npm-debug.log
+.DS_Store
+coverage
+.nyc_output

@@ -1,0 +1,25 @@
+language: node_js
+
+node_js:
+  - "6"
+  - "stable"
+
+sudo: false
+
+before_script:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
+script:
+  - npm run lint
+  - npm run stylelint
+  - npm run test
+
+branches:
+  only:
+    - master
+    - develop
+
+cache:
+  directories:
+    - node_modules

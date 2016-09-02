@@ -1,0 +1,36 @@
+{
+  "extends": "eslint-config-airbnb",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "jsx-quotes": [2, "prefer-single"],
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "react/prefer-stateless-function": 0,
+    "react/jsx-filename-extension": [2, { "extensions": [".js"] }],
+  },
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "settings": {
+    "import/parser": "babel-eslint",
+    "import/resolver": {
+      node: {
+        moduleDirectory: [
+          'src',
+          'node_modules',
+        ]
+      }
+    }
+  },
+  "parser": "babel-eslint",
+  "ecmaFeatures": {
+    jsx: true,
+    module: true
+  },
+  "globals": {
+    "__DEVELOPMENT__": true,
+  }
+}

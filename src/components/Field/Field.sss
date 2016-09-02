@@ -1,0 +1,105 @@
+@import 'variables.sss';
+
+.field
+  display: inline-block
+  height: 55px
+  position: relative
+  width: 100%
+  transition: .2s height
+  overflow: hidden
+
+  &_state_errorText
+    height: 80px
+
+  &_state_error
+    .input
+      color: var(--red)
+
+    .border
+      transform: translateX(0)
+      background-color: var(--red)
+
+  &_state_note
+    height: 75px
+
+  &_state_note&_state_error
+    height: 110px
+
+  &_type_center
+    .input,
+    .label,
+    .note
+      text-align: center
+
+    .label
+      justify-content: center
+
+  &_type_placeholder,
+  &_state_isText
+    .label
+      transform: translateY(-100%)
+
+.input
+  position: relative
+  margin-top: 20px
+  width: 100%
+  border-bottom: 1px solid var(--lightGray)
+  color: var(--darkBlue)
+  font-size: 18px
+  font-weight: 500
+  line-height: 32px
+  outline: none
+
+  &:focus ~ .border
+    transform: translateX(0)
+
+  &:focus ~ .label
+    transform: translateY(-100%)
+
+  &::placeholder
+    font-size: 16px
+    color: var(--lightGray)
+
+.label
+  position: absolute
+  top: 30px
+  left: 0
+  width: 100%
+  font-size: 14px
+  font-weight: 400
+  color: var(--lightGray)
+  will-change: transform
+  transition: transform .2s, font-size .2s
+  display: flex
+  pointer-events: none
+
+
+.required
+  font-size: 18px
+  padding-left: 6px
+  color: var(--red)
+
+.note
+  padding-top: 7px
+  display: block
+  width: 100%
+  line-height: 16px
+  font-size: 12px
+  font-weight: 400
+  white-space: nowrap
+  color: var(--lightGray)
+  text-overflow: ellipsis
+
+  &_type_error
+    color: var(--red)
+
+.border
+  z-index: 20
+  position: absolute
+  top: 52px
+  left: 0
+  width: 100%
+  height: 2px
+  background-color: var(--blue)
+  transform: translateX(-100%)
+  transition: transform .2s
