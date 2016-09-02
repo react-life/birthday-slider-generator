@@ -1,12 +1,11 @@
 {
-  "name": "Nutrilogic",
+  "name": "birthday-slider-generator",
   "description": "Star organizer in Github",
-  "author": "CSSSR <sales@csssr.io> (https://github.com/CSSSR)",
-  "private": true,
+  "author": "",
   "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/CSSSR/relef"
+    "url": "https://github.com/react-life/birthday-slider-generator"
   },
   "keywords": [
     "react",
@@ -38,7 +37,6 @@
     "test:watch": "npm run ava -- --watch",
     "storybook": "better-npm-run start-storybook",
     "build-storybook": "better-npm-run build-storybook",
-    "prepush": "npm run lint && npm run stylelint",
     "make": "babel-node make-block.js"
   },
   "ava": {
