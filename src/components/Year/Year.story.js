@@ -17,6 +17,7 @@ const days = {};
 
 const persons = range(0, 70);
 const orderedUsers = {};
+const users = [];
 persons.map(key => {
   const day = randomInt(1, 28);
   let m = key;
@@ -25,6 +26,11 @@ persons.map(key => {
   const days = `${day < 10 ? '0' + day : day}`;
   const month = `${m < 10 ? '0' + m : m}`;
   const date = `${year}-${month}-${days}`;
+  users.push({
+    date,
+    gender: 'male',
+    name: `${names[randomInt(0, 4)]} ${surnames[randomInt(0, 4)]}`
+  });
   if (!orderedUsers[m]) orderedUsers[m] = {};
   if (!orderedUsers[m][day]) orderedUsers[m][day] = [];
   orderedUsers[m][day].push({
@@ -47,7 +53,7 @@ storiesOf('Year')
               date={day[0].date}
             >
               {day.map(user => {
-                return <Birthday date={user.date} name={user.name} />
+                return <Birthday date={user.date} name={JSON.stringify(users)} />
               })}
             </Day>);
           })}
