@@ -15,7 +15,6 @@ export default class Day extends Component {
     date: PropTypes.string.isRequired,
     reverse: PropTypes.bool,
     year: PropTypes.number,
-    dayHeight: PropTypes.number,
     children: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.element,
@@ -23,23 +22,20 @@ export default class Day extends Component {
   }
 
   static defaultProps = {
-    dayHeight: 5,
     year: moment().year()
   }
 
   render() {
-    const { date, year, dayHeight, reverse, children } = this.props;
+    const { date, year, reverse, children } = this.props;
     const momentDate = moment(date).isValid() ? moment(date) : moment();
     const daysToMonthEnd = Math.max(momentDate.daysInMonth() - momentDate.date(), 0);
     const month = momentDate.month();
-    const top = daysToMonthEnd * dayHeight + 'px';
 
     return (
       <div
         styleName={classNames('day', 'day_month_' + month, {
           day_reverse: reverse
         })}
-        style={{ top }}
       >
         <div
           styleName={classNames('date', {

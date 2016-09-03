@@ -37,19 +37,14 @@ storiesOf('Year')
   .addWithInfo('Default', () => (
     <Year>
       {months.map(month => {
-        let lastDay;
-        let reverse = false;
         return (<Month
           month={month}
           dayHeight={20}
         >
-          {orderedUsers[month + 1] && Object.keys(orderedUsers[month + 1]).map(key => {
+          {orderedUsers[month + 1] && Object.keys(orderedUsers[month + 1]).reverse().map(key => {
             const day = orderedUsers[month + 1][key];
-            reverse = lastDay && Math.abs(key - lastDay) < 2 ? !reverse : false;
-            lastDay = key;
             return (<Day
               date={day[0].date}
-              reverse={reverse}
             >
               {day.map(user => {
                 return <Birthday date={user.date} name={user.name} />

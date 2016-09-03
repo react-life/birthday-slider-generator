@@ -14,7 +14,6 @@ export default class Month extends Component {
 	static propTypes = {
 		month: PropTypes.number.isRequired,
     year: PropTypes.number,
-		dayHeight: PropTypes.number,
     children: PropTypes.oneOfType([
       PropTypes.array,
       PropTypes.element,
@@ -22,27 +21,20 @@ export default class Month extends Component {
 	}
 
 	static defaultProps = {
-    year: moment().year(),
-		dayHeight: 5
+    year: moment().year()
 	}
 
   render() {
-  	const { month, dayHeight, year } = this.props;
+  	const { month, year } = this.props;
   	const date = moment([ year ]).month(month);
   	const monthLocale = date.format('MMMM');
-  	const monthHeight = dayHeight * date.daysInMonth();
 
     return (
       <div styleName='month'>
         <div styleName={classNames('title', 'title_month_' + month.toString())}>{monthLocale}</div>
-        <div
-          styleName={classNames('days', 'days_month_' + month.toString())}
-          style={{
-            height: monthHeight + 'px'
-          }}
-        >
+        <div styleName={classNames('days', 'days_month_' + month.toString())}>
           {React.Children.map(this.props.children, child => {
-            return React.cloneElement(child, { dayHeight })
+            return React.cloneElement(child)
           })}
         </div>
       </div>

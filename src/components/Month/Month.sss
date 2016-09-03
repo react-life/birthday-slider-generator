@@ -3,12 +3,12 @@
 .month
   display: block
   position: relative
-  text-align: center
-  margin-bottom: 1px
 
 .title
   display: inline-block
   padding: 3px 6px
+  margin-left: 100px
+  transform: translate(-50%, 0)
   font-size: 14px
   border-radius: 3px
   color: var(--color-black)
@@ -38,10 +38,11 @@
 .days
   display: block
   position: relative
+  padding-top: 10px
 
   &::before
     position: absolute
-    left: 50%
+    left: 100px
     top: 0
     height: 100%
     width: 2px
