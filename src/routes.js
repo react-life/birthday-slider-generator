@@ -20,14 +20,6 @@ import NotFound from 'containers/NotFound';
 export default (
   <Route path='/' component={App}>
     <IndexRoute component={Login} />
-
-    <Route>
-      <Route path='/login' component={Login}>
-        <Route path='recovery' component={RecoveryPassword} />
-      </Route>
-      <Route path='/signup' component={Signup} />
-    </Route>
-
     <Route path='*' component={NotFound} status={404} />
   </Route>
 );

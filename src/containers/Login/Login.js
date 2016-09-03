@@ -12,7 +12,12 @@ export default class LoginContainer extends Component {
     return (
       <div>
         <Helmet title='Login' />
-        Login
+        <form action='/api/sliders' method='post'>
+          <input type='text' name='user' value='Елизавета' />
+          <input type='text' name='birthday' value='1996-08-09' />
+          <input type='text' name='alias' value='owl' />
+          <input type='submit' />
+        </form>
         {this.props.children}
       </div>
     );

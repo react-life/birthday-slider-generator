@@ -4,9 +4,9 @@ export default {
   apiHost: process.env.APIHOST || 'localhost',
   apiPort: process.env.APIPORT,
   app: {
-    title: 'Nutrilogic',
+    title: 'Sliders',
     head: {
-      titleTemplate: '%s - Nutrilogic',
+      titleTemplate: '%s - Sliders',
       meta: [
         {
           name: 'description',

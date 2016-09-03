@@ -1,0 +1,71 @@
+@import 'variables.sss';
+
+.day
+  display: block
+  position: absolute
+  left: 50%
+  margin-top: -4px
+  padding-left: 10px
+
+  &::before
+    position: absolute
+    left: -6px
+    top: 4px
+    width: 12px
+    height: 12px
+    border-radius: 100%
+    border: 3px solid var(--color-white)
+    box-sizing: border-box
+    background: var(--blue)
+    content: ''
+
+  &_month
+    &_0,
+    &_1,
+    &_11
+      &::before
+        background: var(--winter)
+
+    &_2,
+    &_3,
+    &_4
+      &::before
+        background: var(--spring)
+
+    &_5,
+    &_6,
+    &_7
+      &::before
+        background: var(--summer)
+
+    &_8,
+    &_9,
+    &_10
+      &::before
+        background: var(--autumn)
+
+  &_reverse
+    left: auto
+    right: 50%
+    padding-left: 0
+    padding-right: 10px
+
+    &::before
+      left: auto
+      right: -6px
+
+.date
+  position: absolute
+  width: 90px
+  top: 3px
+  left: -100px
+  text-align: right
+  font-size: 12px
+
+  &_reverse
+    left: auto
+    right: -100px
+    text-align: left
+
+.name
+  display: block
