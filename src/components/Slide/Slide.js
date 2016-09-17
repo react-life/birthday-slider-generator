@@ -24,12 +24,14 @@ export default class Slide extends Component {
     backgroundOffsetY: PropTypes.string,
     backgroundRepeat: PropTypes.string,
     onChangeSettings: PropTypes.func,
+    settings: PropTypes.array,
     editable: PropTypes.bool,
     controlPanel: PropTypes.bool,
     children: PropTypes.node,
   }
 
   static defaultProps = {
+    settings: [],
     onChangeSettings: () => {}
   }
 
@@ -40,11 +42,6 @@ export default class Slide extends Component {
 
   setSettings = (key, value) => {
     if (!key) return;
-    /*if (key === 'backgroundSize') {
-      this.setState({
-        customSize: value === 'custom',
-      })
-    }*/
     this.props.onChangeSettings(key, value);
   }
 
@@ -88,20 +85,50 @@ export default class Slide extends Component {
     });
   }
 
+  renderInput(props, i) {
+    return (
+      <Input
+        {...props}
+        key={i}
+        value={this.props[props.name]}
+        onChange={this.setSettings}
+      />
+    );
+  }
+
+  renderField(field, i) {
+    return (
+      <div
+        key={i}
+        styleName={classNames('field', {
+          field_flex: Array.isArray(field),
+        })}
+      >
+        {Array.isArray(field) ?
+          field.map((props, num) => (
+            <div styleName='limited'>
+              {this.renderInput(props, num)}
+            </div>
+          )) :
+          this.renderInput(field, i)}
+      </div>
+    );
+  }
+
+  renderFieldSet(item, i) {
+    return (
+      <FieldSet title={item.title} key={i}>
+        {item.fields.map(this.renderField, this)}
+      </FieldSet>
+    );
+  }
+
   renderSettings() {
     const {
       backgroundColor,
-      backgroundImage,
-      backgroundSize,
-      backgroundPositionX,
-      backgroundPositionY,
-      backgroundOffsetX,
-      backgroundOffsetY,
-      backgroundRepeat,
+      settings,
       controlPanel
     } = this.props;
-
-    const disabled = !backgroundImage;
 
     return (
       <div styleName='controlPanel'>
@@ -129,100 +156,27 @@ export default class Slide extends Component {
               onChange={this.handleChangeColor}
             />
           </FieldSet>
-          <FieldSet title='Background image' width='200px'>
-            <div styleName='field'>
-              <Input
-                label='URL'
-                name='backgroundImage'
-                value={backgroundImage}
-                onChange={this.setSettings}
-              />
-            </div>
-
-            <div styleName='field'>
-              <Input
-                type='select'
-                label='Size'
-                name='backgroundSize'
-                value={backgroundSize}
-                items={['auto', 'cover', 'contain', 'custom']}
-                onChange={this.setSettings}
-                disabled={disabled}
-              />
-            </div>
-
-            <div styleName='field'>
-              <Input
-                type='select'
-                label='Repeat'
-                name='backgroundRepeat'
-                value={backgroundRepeat}
-                items={['repeat', 'repeat-x', 'repeat-y', 'no-repeat']}
-                onChange={this.setSettings}
-                disabled={disabled}
-              />
-            </div>
-
-            <div styleName='field field_flex'>
-              <div styleName='limited'>
-                <Input
-                  type='select'
-                  label='Position'
-                  name='backgroundPositionX'
-                  value={backgroundPositionX}
-                  items={['left', 'right', 'center']}
-                  onChange={this.setSettings}
-                  disabled={disabled}
-                />
-              </div>
-              <div styleName='limited'>
-                <Input
-                  type='select'
-                  name='backgroundPositionY'
-                  value={backgroundPositionY}
-                  items={['top', 'bottom', 'center']}
-                  onChange={this.setSettings}
-                  disabled={disabled}
-                />
-              </div>
-            </div>
-            <div styleName='field field_flex'>
-              <div styleName='limited'>
-                <Input
-                  label='Offset'
-                  name='backgroundOffsetX'
-                  value={backgroundOffsetX}
-                  onChange={this.setSettings}
-                  disabled={disabled}
-                />
-              </div>
-              <div styleName='limited'>
-                <Input
-                  name='backgroundOffsetY'
-                  value={backgroundOffsetY}
-                  onChange={this.setSettings}
-                  disabled={disabled}
-                />
-              </div>
-              <div styleName='hint'>
-                Drag image for set offset
-              </div>
-            </div>
-          </FieldSet>
+          {settings.map(this.renderFieldSet, this)}
         </div>
       </div>
     );
   }
 
-  getBackgroundPosition() {
-    const {
-      backgroundPositionX: px,
-      backgroundPositionY: py,
-      backgroundOffsetX: ox,
-      backgroundOffsetY: oy,
-    } = this.props;
-
-    return `${px || ''}${ox && ' '+ox+'px'}${py && ' '+py}${oy && ' '+oy+'px'}`;
+  getBackgroundPosition(px, py, ox, oy) {
+    let position = '';
+    if (px) {
+      position += `${px} `;
+    }
+    if (ox && ox !== '0') {
+      position += `${ox}px `;
+    }
+    if (py) {
+      position += `${py} `;
+    }
+    if (oy && oy !== '0') {
+      position += `${oy}px`;
+    }
+    return position;
   }
 
   render() {  
@@ -231,11 +185,15 @@ export default class Slide extends Component {
       backgroundImage,
       backgroundSize,
       backgroundRepeat,
+      backgroundPositionX: px,
+      backgroundPositionY: py,
+      backgroundOffsetX: ox,
+      backgroundOffsetY: oy,
       editable,
       children
     } = this.props;
 
-    const backgroundPosition = this.getBackgroundPosition();
+    const backgroundPosition = this.getBackgroundPosition(px, py, ox, oy);
 
     return (
       <div

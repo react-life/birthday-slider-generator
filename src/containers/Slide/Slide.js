@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import pureRender from 'pure-render-decorator';
 import Helmet from 'react-helmet';
 import Slide from 'components/Slide';
+import Content from 'components/Content';
+import { slideSettings } from 'utils/settings';
 
 @pureRender
 export default class SlideContainer extends Component {
@@ -31,9 +33,11 @@ export default class SlideContainer extends Component {
         <div style={{ height: '600px' }}>
           <Slide
             {...this.state}
+            settings={slideSettings}
             onChangeSettings={this.handleChangeSettings}
             editable
           >
+            
           </Slide>
         </div>
       </div>

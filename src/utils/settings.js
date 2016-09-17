@@ -1,14 +1,5 @@
 export const slideSettings = [
   {
-    title: 'Background color',
-    fields: [
-      {
-        name: 'backgroundColor',
-        ComponentName: 'SketchPicker',
-        valueProp: 'color'
-      }
-    ]
-  }, {
     title: 'Background image',
     fields: [
       {
@@ -20,25 +11,36 @@ export const slideSettings = [
         name: 'backgroundSize',
         label: 'Size',
         type: 'select',
-        values: ['auto', 'cover', 'contain'],
+        items: ['auto', 'cover', 'contain'],
       },
       {
         name: 'backgroundRepeat',
         label: 'Repeat',
         type: 'select',
-        values: ['repeat', 'repeat-x', 'repeat-y', 'no-repeat'],
+        items: ['repeat', 'repeat-x', 'repeat-y', 'no-repeat'],
       },
       [
         {
           name: 'backgroundPositionX',
           label: 'Position',
           type: 'select',
-          values: ['left', 'right', 'center'],
+          items: ['left', 'right', 'center'],
         },
         {
           name: 'backgroundPositionY',
           type: 'select',
-          values: ['top', 'bottom', 'center'],
+          items: ['top', 'bottom', 'center'],
+        }
+      ],
+      [
+        {
+          name: 'backgroundOffsetX',
+          label: 'Offset',
+          type: 'text',
+        },
+        {
+          name: 'backgroundOffsetY',
+          type: 'text',
         }
       ]
     ]

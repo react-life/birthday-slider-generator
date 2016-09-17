@@ -38,7 +38,7 @@
 
   &_pressed,
   &:active
-    box-shadow: 0 0 3px var(--blue), inset 1px 1px 1px rgba(0,0,0,.5)
+    box-shadow: inset 1px 1px 1px rgba(0,0,0,.5)
     padding: 1px 12px 0 13px
 
   &_block
@@ -116,3 +116,9 @@
   &_theme_progress:disabled
     background-color: var(--lightGray)
     color: var(--gray)
+
+  &_theme
+    &_gray
+      background: var(--gray)
+      color: var(--color-black)
+      box-shadow: 0 0 3px var(--gray)

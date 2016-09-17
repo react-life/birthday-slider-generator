@@ -1,5 +1,17 @@
 @import 'variables.sss';
 
 .content
+  position: absolute
   display: block
-  padding: 30px
+  box-sizing: border-box
+  padding: 5px
+
+  &_editable
+    border: 1px dashed var(--gray)
+    border-radius: 3px
+
+.controlPanel
+  position: absolute
+  left: -32px
+  top: -30px
+  height: 30px
