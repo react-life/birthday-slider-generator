@@ -8,6 +8,8 @@ import styles from './Content.sss';
 @cssModules(styles)
 export default class Content extends Component {
   static propTypes = {
+    left: PropTypes.string,
+    top: PropTypes.string,
     children: PropTypes.node,
   };
 

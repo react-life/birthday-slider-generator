@@ -1,0 +1,54 @@
+@import 'variables.sss';
+
+.slide
+  position: relative
+  display: block
+  width: 100%
+  height: 100%
+
+.content
+  display: block
+
+  &_absolute
+    position: absolute
+
+.controlPanel
+  position: absolute
+  display: flex
+  left: 20px
+  top: 20px
+
+.toggleControlPanel
+  opacity: .5
+  transition: opacity .2s ease
+
+  &_active,
+  &:hover
+    opacity: 1
+
+.settings
+  display: flex
+  width: 0
+  margin-left: 10px
+  transition: width .2s ease
+  overflow: hidden
+
+  &_visible
+    width: 100%
+
+.field
+  display: block
+  padding: 7px 10px
+
+  &_flex
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+    align-items: flex-end
+
+.limited
+  max-width: 80px
+
+.hint
+  font-size: 12px
+  color: var(--gray)

@@ -9,9 +9,12 @@ import styles from './Icon.sss';
 export default class Icon extends Component {
   static propTypes = {
     icon: PropTypes.string,
+    width: PropTypes.number,
+    height: PropTypes.number,
   };
 
   render() {
+    const { width, height } = this.props;
     let icon;
     try {
       icon = require(`./icons/${this.props.icon}.svg`); // eslint-disable-line global-require
@@ -22,6 +25,10 @@ export default class Icon extends Component {
     return (
       <span
         styleName='icon'
+        style={{
+          width,
+          height,
+        }}
         dangerouslySetInnerHTML={{ __html: icon }}
       />
     );

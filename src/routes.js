@@ -3,23 +3,14 @@ import { IndexRoute, Route } from 'react-router';
 import App from 'containers/App';
 
 import Login from 'containers/Login';
-import RecoveryPassword from 'containers/RecoveryPassword';
-import Signup from 'containers/Signup';
-
-import Institution from 'containers/Institution';
-import Staff from 'containers/Staff';
-import Roles from 'containers/Roles';
-import Devices from 'containers/Devices';
-import Journal from 'containers/Journal';
-import Profile from 'containers/Profile';
-import ChangePassword from 'containers/ChangePassword';
-
+import Slide from 'containers/Slide';
 
 import NotFound from 'containers/NotFound';
 
 export default (
   <Route path='/' component={App}>
     <IndexRoute component={Login} />
+    <Route path='slide' component={Slide} />
     <Route path='*' component={NotFound} status={404} />
   </Route>
 );

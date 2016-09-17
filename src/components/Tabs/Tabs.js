@@ -46,22 +46,26 @@ export default class Tabs extends Component {
     }
   }
 
-  renderLabel(child, index) {
+  renderLabel(label, index) {
     const { selected } = this.state;
     const { selected: propsSelected } = this.props;
     const selectedLabel = isFinite(propsSelected) ? propsSelected : selected;
 
     return (
       <li key={index}>
-        <button
-          type='button'
-          styleName={classNames('label', {
-            label_active: selectedLabel === index,
-          })}
-          onClick={this.handleClick(index)}
-        >
-          {this.props.labels[index]}
-        </button>
+        {
+          typeof label === 'object' ?
+          <span styleName='labelText'>{label.text}</span> :
+          <button
+            type='button'
+            styleName={classNames('label', {
+              label_active: selectedLabel === index,
+            })}
+            onClick={this.handleClick(index)}
+          >
+            {label}
+          </button>
+        }
       </li>
     );
   }
@@ -69,7 +73,7 @@ export default class Tabs extends Component {
   renderTitles() {
     return (
       <ul styleName='labels'>
-        {React.Children.map(this.props.children, this.renderLabel, this)}
+        {this.props.labels.map(this.renderLabel, this)}
       </ul>
     );
   }

@@ -22,6 +22,8 @@ export default class Button extends Component {
     block: PropTypes.bool,
     type: PropTypes.bool,
     theme: PropTypes.string,
+    rounded: PropTypes.bool,
+    pressed: PropTypes.bool,
     children: PropTypes.node.isRequired,
   }
 
@@ -36,7 +38,7 @@ export default class Button extends Component {
 
   render() {
     const { href, to, onClick, disabled, color,
-      children, small, block, bordered, type, theme } = this.props;
+      children, small, block, bordered, type, theme, rounded, pressed } = this.props;
 
     let ComponentName = 'button';
     if (to) {
@@ -55,6 +57,8 @@ export default class Button extends Component {
           button_bordered: bordered,
           button_color_white: color === 'white',
           button_color_blue: color === 'blue',
+          button_rounded: rounded,
+          button_pressed: pressed,
           [`button_theme_${theme}`]: theme,
         })}
         disabled={disabled}

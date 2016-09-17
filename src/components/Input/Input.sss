@@ -1,0 +1,56 @@
+@import 'variables.sss';
+
+.input
+  width: 100%
+  display: flex
+
+  &_label
+    &_top
+      flex-direction: column-reverse
+
+    &_bottom
+      flex-direction: column
+
+    &_left
+      flex-direction: row
+
+    &_right
+      flex-direction: row-reverse
+
+  &_disabled
+    .label
+      color: var(--lightGray)
+
+.label
+  display: block
+  font-size: 14px
+  color: var(--gray)
+  transition: color var(--transition)
+
+.field
+  display: block
+
+.select,
+.text
+  width: 100%
+  box-sizing: border-box
+  display: block
+  padding: 5px
+  border-radius: 3px
+  font-size: 14px
+  border: 1px solid var(--gray)
+  transition: border-color var(--transition)
+
+  &[disabled]
+    color: var(--gray)
+    border-color: var(--lightGray)
+
+  &:focus
+    border-color: var(--blue)
+
+  &:focus ~ .label
+    color: var(--blue)
+
+.select
+  padding: 4px 2px
+  appearance: menulist
