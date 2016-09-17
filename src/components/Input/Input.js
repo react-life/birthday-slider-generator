@@ -36,7 +36,8 @@ export default class Input extends Component {
 
   handleChange = event => {
     const { target } = event;
-    this.props.onChange(target.name || null, target.value);
+    const value = this.props.type === 'checkbox' ? target.checked : target.value;
+    this.props.onChange(target.name || null, value);
   }
 
   renderOption(item, i) {
@@ -69,11 +70,29 @@ export default class Input extends Component {
     );
   }
 
+  renderCheckbox() {
+    const { name, value, disabled, type } = this.props;
+
+    return (
+      <input
+        styleName='checkbox'
+        type={type}
+        value={value}
+        name={name}
+        onChange={this.handleChange}
+        disabled={disabled}
+      />
+    );
+  }
+
   renderField() {
     const { type, name, value, disabled } = this.props;
     switch(type) {
       case 'select':
         return this.renderSelect();
+
+      case 'checkbox':
+        return this.renderCheckbox();
     }
 
     return (
@@ -96,6 +115,8 @@ export default class Input extends Component {
         styleName={classNames('input', {
           [`input_label_${labelPosition}`]: labelPosition,
           input_disabled: disabled,
+          input_checkbox: type === 'checkbox',
+          input_checkbox_checked: type === 'checkbox' && value
         })}
       >
         {this.renderField()}

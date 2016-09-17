@@ -21,6 +21,29 @@
     .label
       color: var(--lightGray)
 
+  &_checkbox
+    cursor: pointer
+    &:before
+      display: block
+      margin-right: 5px
+      width: 16px
+      height: 16px
+      text-align: center
+      border: 1px solid var(--gray)
+      color: var(--blue)
+      font-size: 12px
+      border-radius: 3px
+      content: ' '
+    
+    &_checked
+      &:before
+        border-color: var(--blue)
+        content: '✔'
+
+      .label
+        cursor: pointer
+        color: var(--blue)
+
 .label
   display: block
   font-size: 14px
@@ -54,3 +77,6 @@
 .select
   padding: 4px 2px
   appearance: menulist
+
+.checkbox
+  display: none
