@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import pureRender from 'pure-render-decorator';
 import classNames from 'classnames';
 import { DraggableCore } from 'react-draggable';
-import { SketchPicker } from 'react-color';
 import SlideSettings from 'components/SlideSettings';
 import R from 'ramda';
 import cssModules from 'helpers/cssModules';
@@ -41,8 +40,8 @@ export default class Slide extends Component {
   }
 
   startDrag = e => {
-    const { editable, expand } = this.props;
-    if (!editable || !expand) {
+    const { editable, expand, backgroundImage } = this.props;
+    if (!editable || !expand || !backgroundImage) {
       return;
     }
     this.setState({

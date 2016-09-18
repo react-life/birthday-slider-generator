@@ -80,6 +80,25 @@ export default class SlideSettings extends Component {
           })}
         >
           <FieldSet title='Background'>
+            <div styleName='field field_flex'>
+              <div styleName='size-1-2'>
+                <div styleName='label'>Color</div>
+                <Input
+                  type='text'
+                  name='backgroundColor'
+                  value={this.props.backgroundColor}
+                  onChange={this.handleChange}
+                />
+              </div>
+              <div styleName='size-1-2'>
+                <Input
+                  type='color'
+                  name='backgroundColor'
+                  value={this.props.backgroundColor}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
             <div styleName='field'>
               <div styleName='label'>Image</div>
               <Input

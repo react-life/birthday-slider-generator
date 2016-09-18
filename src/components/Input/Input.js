@@ -95,9 +95,11 @@ export default class Input extends Component {
         return this.renderCheckbox();
     }
 
+    const props = {};
+
     return (
       <input
-        styleName='text'
+        styleName={type}
         type={type}
         name={name}
         value={value}
