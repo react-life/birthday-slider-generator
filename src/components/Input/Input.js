@@ -23,11 +23,13 @@ export default class Input extends Component {
       'bottom'
     ]),
     type: PropTypes.string,
+    placeholder: PropTypes.string,
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
   }
 
   static defaultProps = {
+    placeholder: '',
     labelPosition: 'top',
     items: [],
     type: 'text',
@@ -35,9 +37,7 @@ export default class Input extends Component {
   }
 
   handleChange = event => {
-    const { target } = event;
-    const value = this.props.type === 'checkbox' ? target.checked : target.value;
-    this.props.onChange(target.name || null, value);
+    this.props.onChange(event);
   }
 
   renderOption(item, i) {
@@ -86,7 +86,7 @@ export default class Input extends Component {
   }
 
   renderField() {
-    const { type, name, value, disabled } = this.props;
+    const { type, name, value, disabled, placeholder } = this.props;
     switch(type) {
       case 'select':
         return this.renderSelect();
@@ -103,6 +103,7 @@ export default class Input extends Component {
         value={value}
         disabled={disabled}
         onChange={this.handleChange}
+        placeholder={placeholder}
       />
     )
   }

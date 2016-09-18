@@ -1,6 +1,6 @@
 export const slideSettings = [
   {
-    title: 'Background image',
+    title: 'Background',
     fields: [
       {
         tabs: [

@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import { DropTarget } from 'react-dnd';
 import { ContentTypes } from 'utils/dnd';
 import Slide from 'components/Slide';
+import SlideSettings from 'components/SlideSettings';
 import Content from 'components/Content';
 import { slideSettings } from 'utils/settings';
 
@@ -27,20 +28,11 @@ export default class SlideContainer extends Component {
     backgroundPositionY: '0%',
     backgroundOffsetX: '0',
     backgroundOffsetY: '0',
-    videoSrc: [],
-    videoControls: false,
-    videoAutoplay: false,
-    videoWidth: 'auto',
-    videoHeight: 'auto',
-    videoOffsetX: '0',
-    videoOffsetY: '0',
-    controlPanel: true,
+    expand: false,
   };
 
-  handleChangeSettings = (key, value) => {
-    this.setState({
-      [key]: value,
-    })
+  handleChange = data => {
+    this.setState(data)
   }
 
   render() {
@@ -49,10 +41,10 @@ export default class SlideContainer extends Component {
       <div>
         <Helmet title='Slide' />
         <div style={{ height: '100vh' }}>
+
           <Slide
+            onChange={this.handleChange}
             {...this.state}
-            settings={slideSettings}
-            onChangeSettings={this.handleChangeSettings}
             editable
           >
           </Slide>
