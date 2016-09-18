@@ -72,6 +72,7 @@ export default class Slide extends Component {
     this.setState({ onStartDrag: [] });
   }
 
+
   render() {  
     const { children, styles, editable, ...props } = this.props;
     const { 

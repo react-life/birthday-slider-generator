@@ -1,48 +1,50 @@
 import React, { Component, PropTypes } from 'react';
 import pureRender from 'pure-render-decorator';
 import classNames from 'classnames';
-import { DragSource } from 'react-dnd';
+import Draggable from 'react-draggable';
 import cssModules from 'helpers/cssModules';
-import { ContentTypes } from 'utils/dnd';
 
 import Button from 'components/Button';
 import Icon from 'components/Icon';
 
 import styles from './Content.sss';
 
-@DragSource(ContentTypes.name, ContentTypes.source, (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging(),
-  clientOffset: monitor.getSourceClientOffset()
-}))
 @pureRender
 @cssModules(styles)
 export default class Content extends Component {
   static propTypes = {
-    connectDragSource: PropTypes.func.isRequired,
     id: PropTypes.string,
-    isDragging: PropTypes.bool,
-    left: PropTypes.string,
-    top: PropTypes.string,
+    left: PropTypes.number,
+    top: PropTypes.number,
     editable: PropTypes.bool,
     children: PropTypes.node,
   };
 
+  static defaultProps = {
+    left: 0,
+    top: 0,
+  }
+
+  state = {
+    left: this.props.left,
+    top: this.props.top,
+  }
+
   render() {
-    const { left, top, editable, children, connectDragSource, isDragging } = this.props;
+    const { editable, children } = this.props;
+    const { left, top } = this.state;
 
-    return connectDragSource(
-      <div
-        styleName={classNames('content', {
-          content_editable: editable
-        })}
-        style={{ left, top }}
-      >
-        {children}
-        {editable && <div styleName='dragArea'>
-
-        </div>}
-      </div>
+    return (
+      <Draggable>
+        <div
+          styleName={classNames('content', {
+            content_editable: editable
+          })}
+          style={{ left, top }}
+        >
+          {children}
+        </div>
+      </Draggable>
     );
   }
 }

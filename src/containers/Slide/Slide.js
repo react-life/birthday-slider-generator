@@ -1,24 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import pureRender from 'pure-render-decorator';
 import Helmet from 'react-helmet';
-import { DropTarget } from 'react-dnd';
-import { ContentTypes } from 'utils/dnd';
 import Slide from 'components/Slide';
 import SlideSettings from 'components/SlideSettings';
 import Content from 'components/Content';
 import { slideSettings } from 'utils/settings';
 
-@DropTarget(ContentTypes.name, ContentTypes.target, (connect, monitor) => ({
-    connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver(),
-}))
 @pureRender
 export default class SlideContainer extends Component {
-  static propTypes = {
-    connectDropTarget: PropTypes.func.isRequired,
-    clientOffset: PropTypes.object,
-  }
-  
   state = {
     backgroundColor: '',
     backgroundImage: '',
@@ -36,8 +25,7 @@ export default class SlideContainer extends Component {
   }
 
   render() {
-    const { connectDropTarget, clientOffset } = this.props;
-    return connectDropTarget(
+    return (
       <div>
         <Helmet title='Slide' />
         <div style={{ height: '100vh' }}>
@@ -47,6 +35,9 @@ export default class SlideContainer extends Component {
             {...this.state}
             editable
           >
+            <Content left={100} top={150} editable>
+              Text here
+            </Content>
           </Slide>
         </div>
       </div>
